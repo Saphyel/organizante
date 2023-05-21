@@ -4,16 +4,15 @@ use std::{
     io::{BufRead, BufReader},
     path::Path,
     thread,
-    time::Duration
+    time::Duration,
 };
 
-
-pub fn search_from_file(filename: impl AsRef<Path>) -> Result<(), std::io::Error> {
+pub fn websites_from_file(filename: impl AsRef<Path>) -> Result<(), std::io::Error> {
     let file = File::open(filename)?;
     let reader = BufReader::new(file);
 
     for line in reader.lines() {
-        open::that_in_background(&line?);
+        open::that(&line?)?;
         thread::sleep(Duration::from_secs(2));
     }
     Ok(())

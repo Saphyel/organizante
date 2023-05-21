@@ -2,16 +2,15 @@ use clap::Parser;
 
 mod application;
 
-use application::{search_from_file};
+use application::websites_from_file;
 
 #[derive(Parser)]
 pub struct Args {
-    /// Absolute path to the file with the list of search strings
-    #[arg(short, long)]
+    /// Absolute path to the file with the list of website strings
     path: std::path::PathBuf,
 }
 
 fn main() -> Result<(), std::io::Error> {
     let args = Args::parse();
-    search_from_file(args.path)
+    websites_from_file(args.path)
 }
