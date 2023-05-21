@@ -8,11 +8,12 @@ use std::{
 };
 
 pub fn websites_from_file(filename: impl AsRef<Path>) -> Result<(), std::io::Error> {
-    let file = File::open(filename)?;
+    let file = File::open(filename).expect("Failed trying to open the file");
     let reader = BufReader::new(file);
 
     for line in reader.lines() {
-        open::that(&line?)?;
+        open::that(&line.expect("Failed reading content of the file"))
+            .expect("Failed opening the new tab");
         thread::sleep(Duration::from_secs(2));
     }
     Ok(())
