@@ -7,7 +7,7 @@ use std::{
     time::Duration,
 };
 
-pub fn websites_from_file(filename: impl AsRef<Path>) -> Result<(), std::io::Error> {
+pub fn websites_from_file(filename: impl AsRef<Path>) {
     let file = File::open(filename).expect("Failed trying to open the file");
     let reader = BufReader::new(file);
 
@@ -16,5 +16,4 @@ pub fn websites_from_file(filename: impl AsRef<Path>) -> Result<(), std::io::Err
             .expect("Failed opening the new tab");
         thread::sleep(Duration::from_secs(2));
     }
-    Ok(())
 }

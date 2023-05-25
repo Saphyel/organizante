@@ -10,7 +10,7 @@ pub struct Args {
     path: std::path::PathBuf,
 }
 
-fn main() -> Result<(), std::io::Error> {
+fn main() {
     let args = Args::parse();
-    websites_from_file(args.path)
+    websites_from_file(args.path);
 }
